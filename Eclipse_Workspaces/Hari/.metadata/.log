@@ -1,0 +1,12 @@
+!SESSION 2012-08-17 17:49:58.582 -----------------------------------------------
+eclipse.buildId=I20120608-1400
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -data C:\dev\eclipse_workspace -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-08-17 17:53:55.355
+!MESSAGE Failed to load properties file for project 'AndroidPOCs'
+
+!ENTRY org.eclipse.ui 2 2 2012-08-17 17:54:44.621
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
