@@ -1,7 +1,0 @@
-package snippet;
-
-public class Snippet {
-	$(document).bind('deviceready', Spinach.DeviceReady, true);
-	
-}
-
