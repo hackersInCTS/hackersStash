@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>
-    </title>
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css"/>
-    <link rel="stylesheet" href="styles/my.css"/>
-    <style>
-            /* App custom styles */
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-    </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CTS Hackers - POCs</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
     <script src="scripts/cordova-2.0.0.js"></script>
     <script src="scripts/my.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
 </head>
+
 <body>
-<!-- Home -->
+
+<!-- Start of index page -->
 <div data-role="page" id="index">
     <div data-theme="a" data-role="header" data-position="fixed">
         <h3>
@@ -48,12 +45,12 @@
                 <h3>
                     Geo Location
                 </h3>
-                <a data-role="button" data-transition="none" data-theme="b" href="#" data-icon="info"
-                   data-iconpos="right" id="SpecificLocation">
+                <a data-role="button" data-transition="none" data-theme="b" href="#map" data-icon="info"
+                   data-iconpos="right">
                     Plot specified location
                 </a>
-                <a data-role="button" data-transition="none" data-theme="e" href="#" data-icon="info"
-                   data-iconpos="right" id="CurrentLocation">
+                <a data-role="button" data-transition="none" data-theme="e" href="#map" data-icon="info"
+                   data-iconpos="right">
                     Plot current location
                 </a>
             </div>
@@ -70,11 +67,26 @@
         </h2>
     </div>
 </div>
-<script type="text/javascript" src="scripts/script.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        Spinach.Home.initialize();
-    });
-</script>
+<!-- /page -->
+
+<!-- Start of map page -->
+<div data-role="page" id="map">
+    <div data-theme="a" data-role="header" data-position="fixed">
+        <h3>
+            POCs
+        </h3>
+    </div>
+    <div data-role="content" style="padding: 15px">
+        <img id="mapPlotImg"/>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h2>
+            © Hackers in CTS
+        </h2>
+    </div>
+</div>
+<!-- /page -->
+
 </body>
+
 </html>

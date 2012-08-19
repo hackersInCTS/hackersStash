@@ -11,26 +11,11 @@ var MapViewModel = function () {
         return 'https://maps.googleapis.com/maps/api/staticmap?center=' + this.location +
             '&zoom=' + this.zoom + '&size=' + this.width + 'x' + this.height +
             '&markers=' + this.markers.join('|') + '&sensor=' + this.sensor;
-    }
+    };
 };
 
 Spinach.Common = (function ($) {
     return {
-        getQueryStringValue:function (queryStringName) {
-            var allQueryString = window.location.search.substring(1);
-            var queryStrings = allQueryString.split('&');
-            for (var i = 0; i < queryStrings.length; i++) {
-                var nameValuePair = queryStrings[i].split('=');
-                if (nameValuePair[0].toLowerCase() === queryStringName.toLowerCase()) {
-                    return nameValuePair[1];
-                }
-            }
-            return '';
-        },
-        navigateTo:function (page) {
-            var url = location.href;
-            location.href = url.replace(new RegExp("[a-z]*.html", "i"), page + ".html");
-        },
         alert:function (message) {
             try{
                 navigator.notification.alert(message, $.noop, "CTS Hackers");
@@ -47,14 +32,9 @@ Spinach.Home = (function ($) {
         initialize:function () {
             //document.addEventListener("deviceready", Spinach.Common.DeviceReady, true);
             $(document).on("deviceready", Spinach.Home.DeviceReady);
-            $('#SpecificLocation, #CurrentLocation').click(Spinach.Home.locationButtonClick);
         },
         DeviceReady:function () {
             Spinach.Common.alert("PhoneGap is alive and kicking!!");
-
-        },
-        locationButtonClick:function () {
-            Spinach.Common.navigateTo('map');
         }
     };
 }(jQuery));
@@ -79,7 +59,11 @@ Spinach.Map = (function ($) {
                     'Speed: ' + position.coords.speed + '\n' +
                     'Timestamp: ' + position.timestamp + '\n');
                 //TODO: Map the returned position to a MapViewModel
-                Spinach.Map.plotMap(new MapViewModel());
+                var mapViewModel = new MapViewModel();
+                var location = position.coords.latitude + ', ' + position.coords.longitude;
+                mapViewModel.location = location;
+                mapViewModel.markers = [location];
+                Spinach.Map.plotMap(mapViewModel);
             };
 
             // onError Callback receives a PositionError object
@@ -98,3 +82,12 @@ Spinach.Map = (function ($) {
         }
     };
 }(jQuery));
+
+//Page Init events
+$(document).delegate("#index", "pageinit", function () {
+    Spinach.Home.initialize();
+});
+
+$(document).delegate("#map", "pageinit", function () {
+    Spinach.Map.initialize();
+});
