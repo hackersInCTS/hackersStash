@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6e4BfRnKU_yRj1uodiOlnFAywSrEdIss&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6e4BfRnKU_yRj1uodiOlnFAywSrEdIss&sensor=true"></script>
     <script src="scripts/cordova-2.0.0.js"></script>
     <script src="scripts/my.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
@@ -46,8 +46,8 @@
                 <h3>
                     Geo Location
                 </h3>
-                <a id="SpecificLocation" data-role="button" data-transition="none" data-theme="b" data-icon="info"
-                   data-iconpos="right">
+                <a data-role="button" data-transition="none" data-theme="b" data-icon="info" href="#dialog"
+                   data-rel="dialog" data-iconpos="right">
                     Plot specified location
                 </a>
                 <a id="CurrentLocation" data-role="button" data-transition="none" data-theme="e" data-icon="info"
@@ -87,6 +87,37 @@
             <a data-role="button" data-rel="back" data-inline="true" data-transition="none" href="#"
                data-icon="back" data-iconpos="left">
                 Back
+            </a>
+        </div>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h2>
+            © Hackers in CTS
+        </h2>
+    </div>
+</div>
+<!-- /page -->
+
+<!-- Start of map page -->
+<div data-role="page" id="dialog">
+    <div data-role="content" style="padding: 15px">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-mini="true">
+                <label for="textinput1">
+                    Address
+                </label>
+                <input name="address" id="address" placeholder="500 Frank W. Burr Blvd Teaneck NJ 07666"
+                       value="" type="text">
+            </fieldset>
+        </div>
+        <div>
+            <a data-role="button" data-inline="true" data-transition="none" data-theme="e" href="#" data-icon="check"
+               data-iconpos="left" id="PlotSpecificLocationButton">
+                Plot
+            </a>
+            <a data-role="button" data-rel="back" data-inline="true" data-transition="none" href="#"
+               data-icon="back" data-iconpos="left">
+                Cancel
             </a>
         </div>
     </div>
