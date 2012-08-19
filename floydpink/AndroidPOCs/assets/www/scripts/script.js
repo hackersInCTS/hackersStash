@@ -72,10 +72,6 @@ Spinach.Home = (function ($) {
         deviceReady:function () {
             Spinach.Common.alert("PhoneGap is alive and kicking!!");
         },
-        specificLocationOKClick:function () {
-            $('#CurrentLocationFlag').val(false);
-            Spinach.Home.goToMapPage();
-        },
         currentLocationClick:function () {
             $('#CurrentLocationFlag').val(true);
             Spinach.Home.goToMapPage();
@@ -89,8 +85,16 @@ Spinach.Home = (function ($) {
 
 Spinach.Dialog = (function ($) {
     return {
-        initialize:function(){
+        initialize:function () {
 
+        },
+        plotSpecificLocationClick:function (e) {
+            if ($('#address').val()) {
+                $('#CurrentLocationFlag').val(false);
+                Spinach.Home.goToMapPage();
+            } else {
+                e.preventDefault();
+            }
         }
     };
 }(jQuery));
@@ -108,21 +112,22 @@ Spinach.Map = (function ($) {
             $('#mapPlotImg').attr('src', '');
             $('#LocationMarker').empty();
         },
-        getSpecificLocation:function(){
+        getSpecificLocation:function () {
             var userInput = $('#address').val();
             $('#address').val('');
-            var onGeocodeSuccess = function(location){
+            var onGeocodeSuccess = function (location) {
                 var mapViewModel = new MapViewModel();
                 mapViewModel.location = location.latitude + ', ' + location.longitude;
                 mapViewModel.markers = [location.address];
                 $('#LocationMarker').text(location.address);
+                Spinach.Map.plotMap(mapViewModel);
             };
             var onGeocodeError = function (mapViewModel) {
                 return function (errorReason) {
                     console.log(errorReason);
                 };
             };
-            Spinach.GoogleMaps.geocode(userInput,onGeocodeSuccess,onGeocodeError);
+            Spinach.GoogleMaps.geocode(userInput, onGeocodeSuccess, onGeocodeError);
         },
         getCurrentPosition:function () {
             var onReverseGeocodeSuccess = function (mapViewModel) {
@@ -173,8 +178,8 @@ $(document).on("pageshow", "#map", function () {
     Spinach.Map.initialize();
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
     $(document).on('deviceready', Spinach.Home.deviceReady);
     $(document).on('click', '#CurrentLocation', Spinach.Home.currentLocationClick);
-    $(document).on('click', '#PlotSpecificLocationButton', Spinach.Home.specificLocationOKClick);
+    $(document).on('click', '#PlotSpecificLocationButton', Spinach.Dialog.plotSpecificLocationClick);
 });
