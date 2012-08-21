@@ -178,7 +178,7 @@ Spinach.Map = (function ($) {
                 Spinach.Common.alert('code: ' + error.code + '\n' +
                     'message: ' + error.message + '\n');
             };
-            var geoLocationOptions = { maximumAge:30000, timeout:1000, enableHighAccuracy:true };
+            var geoLocationOptions = { maximumAge:1000, timeout:3000, enableHighAccuracy:true };
             navigator.geolocation.getCurrentPosition(onGetPositionSuccess, onGetPositionError, geoLocationOptions);
         },
         getSpeedAndLocation:function () {
@@ -192,7 +192,7 @@ Spinach.Map = (function ($) {
                 Spinach.Common.alert('code: ' + error.code + '\n' +
                     'message: ' + error.message + '\n');
             };
-            var geoLocationOptions = { maximumAge:30000, timeout:1000, enableHighAccuracy:true };
+            var geoLocationOptions = { maximumAge:1000, timeout:3000, enableHighAccuracy:true };
             navigator.geolocation.getCurrentPosition(onGetPositionSuccess, onGetPositionError, geoLocationOptions);
         },
         plotMap:function (mapViewModel) {
